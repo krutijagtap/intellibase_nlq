@@ -1,0 +1,383 @@
+/* Enter your custom styles here */
+@font-face {
+  font-display: block;
+  font-family: SCProsperSans;
+  font-style: normal;
+  font-weight: 400;
+  src: url(../fonts/SCProsperSans-Light.woff2) format("woff2"), url(../fonts/SCProsperSans-Light.ttf) format("truetype")
+}
+
+@font-face {
+  font-display: block;
+  font-family: SCProsperSansLight;
+  font-style: normal;
+  src: url(../fonts/SCProsperSans-Light.woff2) format("woff2"), url(../fonts/SCProsperSans-Light.ttf) format("truetype")
+}
+
+@font-face {
+  font-display: block;
+  font-family: SCProsperSans;
+  font-style: normal;
+  font-weight: 500;
+  src: url(../fonts/SCProsperSans-Regular.woff2) format("woff2"), url(../fonts/SCProsperSans-Regular.ttf) format("truetype")
+}
+
+@font-face {
+  font-display: block;
+  font-family: SCProsperSans;
+  font-style: normal;
+  font-weight: 600;
+  src: url(../fonts/SCProsperSans-Medium.woff2) format("woff2"), url(../fonts/SCProsperSans-Medium.ttf) format("truetype")
+}
+
+@font-face {
+  font-display: block;
+  font-family: SCProsperSansMedium;
+  font-style: normal;
+  src: url(../fonts/SCProsperSans-Medium.woff2) format("woff2"), url(../fonts/SCProsperSans-Medium.ttf) format("truetype")
+}
+
+@font-face {
+  font-display: block;
+  font-family: SCProsperSans;
+  font-style: normal;
+  font-weight: 700;
+  src: url(../fonts/SCProsperSans-Bold.woff2) format("woff2"), url(../fonts/SCProsperSans-Bold.ttf) format("truetype")
+}
+
+@font-face {
+  font-display: block;
+  font-family: SCProsperSansBold;
+  font-style: normal;
+  src: url(../fonts/SCProsperSans-Bold.woff2) format("woff2"), url(../fonts/SCProsperSans-Bold.ttf) format("truetype")
+}
+
+body {
+  font-family: SCProsperSans, Arial, Helvetica, sans-serif;
+  --scbBrandColor: #0473EA;
+  --scbTextColor: #525355;
+  --sapButton_FontFamily: SCProsperSansMedium;
+  --sapButton_Emphasized_FontFamily: SCProsperSansBold;
+  --sapFontFamily: SCProsperSans;
+  --sapFontHeaderFamily: SCProsperSansBold;
+  --sapFontLightFamily: SCProsperSansLight;
+  --sapFontBoldFamily: SCProsperSansBold;
+  --sapFontSemiboldFamily: SCProsperSansMedium;
+  --sapFontSemiboldDuplexFamily: SCProsperSansMedium;
+  --sapFontBlackFamily: SCProsperSansBold;
+  --sapObjectHeader_Title_FontFamily: SCProsperSansBold;
+  --sapTextColor: var(--scbTextColor);
+  --sapPageHeader_TextColor: var(--scbTextColor);
+  --sapTab_TextColor: var(--scbTextColor);
+  --sapField_TextColor: var(--scbTextColor);
+  --sapTab_Selected_TextColor: var(--scbBrandColor);
+  --sapTab_IconColor: var(--scbBrandColor);
+  --sapLinkColor: var(--scbBrandColor);
+  --sapLink_Hover_Color: var(--scbBrandColor);
+  --sapButton_TextColor: var(--scbBrandColor);
+  --sapButton_IconColor: var(--scbBrandColor);
+  --sapButton_BorderColor: var(--scbBrandColor);
+  --sapButton_Accept_Background: var(--scbBrandColor);
+  --sapButton_Accept_BorderColor: var(--scbBrandColor);
+  --sapButton_Accept_Hover_Background: var(--sapButton_Emphasized_Hover_Background);
+  --sapButton_Accept_Hover_BorderColor: var(--sapButton_Emphasized_Hover_BorderColor);
+  --sapButton_Accept_TextColor: white;
+  --sapButton_Accept_Hover_TextColor: white;
+  --sapButton_Reject_Background: var(--scbBrandColor);
+  --sapButton_Reject_BorderColor: var(--scbBrandColor);
+  --sapButton_Reject_Hover_Background: var(--sapButton_Emphasized_Hover_Background);
+  --sapButton_Reject_Hover_BorderColor: var(--sapButton_Emphasized_Hover_BorderColor);
+  --sapButton_Reject_TextColor: white;
+  --sapButton_Reject_Hover_TextColor: white;
+
+}
+
+.sapUiBody,
+.sapUiArea,
+.sapUiCoreDefaultFont,
+.sapUiHintText,
+.sapThemeFont,
+.sapThemeFontFamily,
+.sapUiCorePlaintext {
+  font-family: SCProsperSans !important;
+}
+
+.sapMBtnInner {
+  border-radius: 18px;
+}
+
+.sapMH1Style,
+.sapMH2Style,
+.sapMH3Style,
+.sapMH4Style,
+.sapMH5Style,
+.sapMH6Style,
+.sapMTitle {
+  font-family: SCProsperSansBold !important;
+}
+
+.sapMBtn:focus-visible>.sapMFocusable:not(.sapMBadgeIndicator)::before,
+html.sap-desktop .sapMBtn:focus>.sapMFocusable:not(.sapMBadgeIndicator)::before {
+  border-radius: 18px;
+}
+
+.sapUiSizeCompact .sapMBtnInner.sapMBtnText {
+  background-color: #007aff !important;
+  color: white !important;
+  border-radius: 8px;
+  /* Optional: Adds rounded corners */
+  /* margin-left: 5px; */
+}
+
+html,
+body,
+.sapUiBody,
+.sapMPage {
+  height: 100%;
+  overflow: hidden;
+}
+
+.customRTEFont {
+  font-family: SCProsperSans, Arial, Helvetica, sans-serif !important;
+  font-size: 14px;
+  color: #525355;
+}
+
+.keyword-number {
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  margin-right: 8px;
+  display: inline-block;
+  text-align: center;
+}
+
+/* Color-coded based on index */
+.keyword-color-0 {
+  background-color: #0070f2;
+}
+
+/* blue */
+.keyword-color-1 {
+  background-color: #00b050;
+}
+
+/* green */
+.keyword-color-2 {
+  background-color: #ffb100;
+}
+
+/* yellow */
+.keyword-color-3 {
+  background-color: #d62d20;
+}
+
+/* red */
+.keyword-color-4 {
+  background-color: #a200ff;
+}
+
+/* purple */
+
+.fixedPromptList {
+  height: 500px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  /* optional visual boundary */
+  border-radius: 6px;
+}
+
+.summaryTitle {
+  font-size: 1.5rem;
+  color: rgb(0, 122, 255);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin: 0px;
+}
+
+/* Result */
+.summaryBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 2rem;
+  background: linear-gradient(90deg,
+      rgba(0, 122, 255, 0.08),
+      rgba(0, 122, 255, 0.02));
+  border-bottom: 1px solid rgba(0, 122, 255, 0.15);
+}
+
+.grid-response {
+  padding-left: 5rem
+}
+
+.result {
+  border: none;
+  border-radius: 16px;
+  /* box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 10px 1px; */
+  background: #ffff !important;
+  width: 100% !important;
+  max-width: 1200px;
+}
+
+.response-content {
+  line-height: 1.2;
+  color: #333;
+  font-size: 1rem;
+  text-align: left !important;
+  letter-spacing: normal !important;
+}
+
+.response-content {
+  text-align: left !important;
+  letter-spacing: normal !important;
+}
+
+.responseTextBox {
+  overflow-x: auto;
+  padding: 2rem;
+}
+
+.response-grid {
+  padding-left: 100px;
+}
+
+/* Enhanced Heading Styles */
+.response-content h1,
+.response-content h2,
+.response-content h3,
+.response-content h4,
+.response-content h5,
+.response-content h6 {
+  margin: 2rem 0 1rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+
+.response-content h1 {
+  font-size: 2rem;
+  color: #007aff;
+  border-bottom: 3px solid rgba(0, 122, 255, 0.25);
+  padding-bottom: 0.5rem;
+}
+
+.response-content h2 {
+  font-size: 1.75rem;
+  color: #005bb5;
+  border-left: 4px solid #005bb5;
+  padding-left: 1rem;
+}
+
+.response-content h3 {
+  font-size: 1.5rem;
+  color: #003d82;
+  border-left: 3px solid rgba(0, 61, 130, 0.3);
+  padding-left: 0.5rem;
+}
+
+.response-content h4 {
+  font-size: 1.25rem;
+  color: #002b5c;
+}
+
+.response-content h5 {
+  font-size: 1.15rem;
+  color: #001a3d;
+}
+
+.response-content h6 {
+  font-size: 1.05rem;
+  color: #333;
+  font-style: italic;
+}
+
+/* Enhanced Paragraph and List Styles */
+.response-content p {
+  margin: 1rem 0;
+  color: #444;
+  font-size: 1rem;
+  line-height: 1.2;
+}
+
+.response-content ul,
+.response-content ol {
+  margin: 1rem 0;
+  padding-left: 2.5rem;
+}
+
+.response-content ul {
+  list-style-type: none;
+}
+
+.response-content ul li {
+  position: relative;
+  margin: 0.75rem 0;
+  color: #333;
+}
+
+.response-content ul li:before {
+  content: "•";
+  color: #007aff;
+  font-size: 1.5rem;
+  position: absolute;
+  left: -1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.response-content ol {
+  list-style-type: decimal;
+}
+
+.response-content ol li {
+  margin: 0.75rem 0;
+  color: #333;
+}
+
+/* Enhanced Table Styles */
+.response-content table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 1.5rem 0;
+  /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); */
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.response-content th,
+.response-content td {
+  padding: 1rem;
+  border: 1px solid rgba(0, 122, 255, 0.15);
+  text-align: left;
+  color: #333;
+}
+
+.response-content th {
+  background: rgba(0, 122, 255, 0.1);
+  color: #005bb5;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+}
+
+.response-content td {
+  background: #fff;
+}
+
+.response-content tr:nth-child(even) td {
+  background: rgba(0, 122, 255, 0.02);
+}
+
+.ResultFlexBox {
+  padding: 2rem;
+  max-width: 1200px;
+  width: 100%;
+  box-sizing: border-box;
+}

@@ -1,0 +1,142 @@
+_schema-version: 3.3.0
+ID: intellibase_nlq
+description: A simple CAP project.
+version: 1.0.0
+modules:
+- name: intellibase_nlq-srv
+  type: nodejs
+  path: gen/srv
+  requires:
+  - name: intellibase_nlq-auth
+  - name: intellibase_nlq-db
+  - name: intellibase_nlq-html5-repo-runtime
+  - name: intellibase_nlq-destination-service
+  provides:
+  - name: srv-api
+    properties:
+      srv-url: ${default-url}
+  parameters:
+    buildpack: nodejs_buildpack
+    instances: 1
+  build-parameters:
+    builder: npm-ci
+- name: intellibase_nlq-db-deployer
+  type: hdb
+  path: gen/db
+  requires:
+  - name: intellibase_nlq-db
+  parameters:
+    buildpack: nodejs_buildpack
+- name: intellibase_nlq-destination-content
+  type: com.sap.application.content
+  requires:
+  - name: srv-api
+  - name: intellibase_nlq-destination-service
+    parameters:
+      content-target: true
+      service-key:
+        name: intellibase_nlq-destination-key
+  - name: intellibase_nlq_html_repo_host
+    parameters:
+      service-key:
+        name: intellibase_nlq_html_repo_host-key
+  - name: intellibase_nlq-auth
+    parameters:
+      service-key:
+        name: intellibase_nlq-auth-key
+  parameters:
+    content:
+      instance:
+        destinations:
+        - Authentication: OAuth2UserTokenExchange
+          Name: intellibase_nlq-srv-api
+          TokenServiceInstanceName: intellibase_nlq-auth
+          TokenServiceKeyName: intellibase_nlq-auth-key
+          URL: ~{srv-api/srv-url}
+          sap.cloud.service: intellibase_nlq
+        - Name: Intellibase_intellibase_nlq_html_repo_host
+          ServiceInstanceName: intellibase_nlq-html5-app-host-service
+          ServiceKeyName: intellibase_nlq_html_repo_host-key
+          sap.cloud.service: Intellibase
+        - Authentication: OAuth2UserTokenExchange
+          Name: Intellibase_intellibase_nlq_auth
+          ServiceInstanceName: intellibase_nlq-auth
+          ServiceKeyName: intellibase_nlq-auth-key
+          sap.cloud.service: Intellibase
+        existing_destinations_policy: ignore
+  build-parameters:
+    no-source: true
+- name: intellibase_nlq-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: intellibase_nlq_html_repo_host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - intellibasenlq.zip
+      name: intellibasenlq
+      target-path: resources/
+- name: intellibasenlq
+  type: html5
+  path: app/intellibase_nlq
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: intellibase_nlq-auth
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-plan: application
+- name: intellibase_nlq-db
+  type: com.sap.xs.hdi-container
+  parameters:
+    service: hana
+    service-plan: hdi-shared
+- name: intellibase_nlq-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          existing_destinations_policy: update
+      version: 1.0.0
+    service: destination
+    service-name: intellibase_nlq-destination-service
+    service-plan: lite
+- name: intellibase_nlq_html_repo_host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: intellibase_nlq-html5-app-host-service
+    service-plan: app-host
+- name: intellibase_nlq-html5-repo-runtime
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-runtime
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+  - builder: custom
+    commands:
+    - npm ci
+    - npx cds build --production
