@@ -4,7 +4,10 @@ sap.ui.define([
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
     "sap/m/StandardListItem",
-    "sap/m/MessageBox"
+    "sap/m/MessageBox",
+    "../lib/jspdf/jspdf.umd.min",
+    "../lib/dompurify/purify.min",
+    "../lib/html2canvas/html2canvas.min"
 ], (Controller, JSONModel, Filter, FilterOperator, StandardListItem, MessageBox) => {
     "use strict";
 
@@ -26,35 +29,6 @@ sap.ui.define([
             await this.loadCategories();
             await this.loadProducts();
             this.loadPrompts("All Categories", "All Products");
-        },
-
-        onAfterRendering: function () {
-            const oRTE = this.byId("editablePrompt");
-            if (oRTE) {
-                oRTE.setEditorSettings({
-                    menubar: false,
-                    toolbar: false,
-                    statusbar: false,
-                    branding: false,
-                    content_style: `
-                @font-face {
-                    font-family: 'SCProsperSans';
-                    src: url('../fonts/SCProsperSans-Regular.woff2') format('woff2'),
-                         url('../fonts/SCProsperSans-Regular.ttf') format('truetype');
-                    font-weight: 400;
-                    font-style: normal;
-                }
-                body {
-                    font-family: 'SCProsperSans', Arial, Helvetica, sans-serif !important;
-                    font-size: 14px !important;
-                    color: #525355 !important;
-                }
-                span, sup {
-                    font-family: inherit !important;
-                }
-            `
-                });
-            }
         },
 
         // Load distinct categories
@@ -145,18 +119,27 @@ sap.ui.define([
                 const keyEntries = Object.entries(oResult)
                     .filter(([key, value]) => key.startsWith("key") && value);
 
-                // Map keywords to their sel descriptions and assign consistent numbers
-                const aKeyFields = keyEntries.map(([key, value], index) => ({
+                let aKeyFields = keyEntries.map(([key, value], index) => ({
                     value,
                     description: oResult[key.replace("key", "sel")],
-                    number: index + 1 // fixed sequence 1,2,3…
+                    number: index + 1 // temporary numbering
                 }));
 
-                // Highlight keywords in prompt
+                // 🔹 Determine order of appearance in the prompt
+                aKeyFields = aKeyFields
+                    .map(obj => {
+                        const index = sPrompt.toLowerCase().indexOf(obj.value.toLowerCase());
+                        return index >= 0 ? { ...obj, index } : null;
+                    })
+                    .filter(Boolean)
+                    .sort((a, b) => a.index - b.index)
+                    .map((obj, i) => ({ ...obj, number: i + 1 })); // reassign numbering
+
+                // Highlight keywords in prompt (already ordered)
                 const sHighlightedPrompt = this.highlightKeywords(sPrompt, aKeyFields);
                 this.byId("editablePrompt").setValue(sHighlightedPrompt);
 
-                // Build legend HTML
+                // 🔹 Build legend HTML based on the same ordered list
                 const colors = ["#0070f2", "#00b050", "#ffb100", "#d62d20", "#a200ff"];
                 const sLegendHtml = aKeyFields
                     .filter(k => k.description)
@@ -173,7 +156,7 @@ sap.ui.define([
                             padding:2px 6px;
                             margin-right:8px;
                             font-size:0.9rem;
-                        ">${k.number}<sup></sup></span>
+                        ">${k.number}</span>
                         <span style="font-size:0.9rem; color:#32363a;">
                             ${k.description}
                         </span>
@@ -189,23 +172,24 @@ sap.ui.define([
                 console.error("Error executing getPrompt:", err);
             }
         },
+
         highlightKeywords: function (sPromptText, aKeyFields) {
             if (!sPromptText || !aKeyFields || aKeyFields.length === 0) return sPromptText;
 
             const colors = ["#0070f2", "#00b050", "#ffb100", "#d62d20", "#a200ff"];
             let highlightedText = sPromptText;
 
-            // Replace keywords in the prompt
+            // 🔹 Use already ordered aKeyFields (no need to sort again)
             aKeyFields.forEach((obj, i) => {
                 const keyword = obj.value;
                 if (!keyword) return;
 
                 const safeKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
                 const regex = new RegExp(`\\b(${safeKeyword})\\b`, "gi");
+                const color = colors[i % colors.length];
 
-                highlightedText = highlightedText.replace(regex, () => {
-                    const color = colors[i % colors.length];
-                    return `<span style="background-color:${color};color:white;padding:2px 4px;border-radius:4px;">${keyword}<sup>${obj.number}</sup></span>`;
+                highlightedText = highlightedText.replace(regex, match => {
+                    return `<span style="background-color:${color};color:white;padding:2px 4px;border-radius:4px;">${match}<sup>${obj.number}</sup></span>`;
                 });
             });
 
@@ -217,7 +201,51 @@ sap.ui.define([
             this.loadPrompts(selectedCategory, selectedProduct);
         },
         onPressButton: async function () {
-            var res = `<p style=\"color:gray;\"><em>✨ Generated by FinSight.Intelligence. Please review before use.</em></p>\n\n<h3>Short Answer:</h3>\nThe total Risk-Weighted Assets (RWA) amount to $57.73B.\n\n<h3>Long Answer:</h3>\n\n<h4>Analysis Steps:</h4>\n<ul>\n    <li>Identified GLB_RWA as the target measure for calculation</li>\n    <li>Performed SUM aggregation on GLB_RWA column</li>\n    <li>Formatted the result in billions (B) for better readability</li>\n</ul>\n\n<table style=\"border-collapse: collapse; width: 100%; border: 1px solid #ddd;\">\n    <thead>\n        <tr style=\"background-color: #f2f2f2;\">\n            <th style=\"padding: 8px; text-align: left; border: 1px solid #ddd;\">Measure</th>\n            <th style=\"padding: 8px; text-align: right; border: 1px solid #ddd;\">Value</th>\n        </tr>\n    </thead>\n    <tbody>\n        <tr>\n            <td style=\"padding: 8px; text-align: left; border: 1px solid #ddd;\">Total RWA</td>\n            <td style=\"padding: 8px; text-align: right; border: 1px solid #ddd;\">$57,730,482,199.95</td>\n        </tr>\n    </tbody>\n</table>`
+            const userInput = this.byId("editablePrompt").getValue();
+            if (!userInput) {
+                MessageBox.error("Please select a prompt to proceed!");
+                return;
+            }
+            var res = `<p style="color:red;"><p style="color:gray;"><em>✨ Generated by FinSight.Intelligence. Please review before use.</em></p>
+
+<h2>Executive Summary</h2>
+<p>The financial institution delivered robust performance in Q1'25 with operating income reaching $5,390mn, marking a 7% YoY increase, while achieving 12% YoY income growth excluding notables. The Corporate & Investment Banking division showed particular strength with Global Markets and Global Banking segments growing 14% and 17% YoY respectively. Wealth & Retail Banking demonstrated impressive momentum with a 12% YoY income increase, supported by strong growth in Investment Products (33%) and Bancassurance (15% YoY), while Affluent AUM reached $389bn, representing a 6% QoQ improvement.</p>
+
+<h2>Q1 2025 Financial Performance Analysis</h2>
+<ul>
+    <li><strong>Core Performance Metrics</strong>
+        <ul>
+            <li>Operating income: $5,390mn (+7% YoY)</li>
+            <li>Earnings per share: 19% YoY increase</li>
+            <li>CET1 ratio: 13.8% (39bps decrease QoQ)</li>
+            <li>Liquidity Coverage Ratio (LCR): 147%</li>
+        </ul>
+    </li>
+    <li><strong>Corporate & Investment Banking</strong>
+        <ul>
+            <li>Overall income: +4% YoY</li>
+            <li>Global Markets: +14% YoY</li>
+            <li>Global Banking: +17% YoY</li>
+            <li>Transaction Services: -4% YoY</li>
+        </ul>
+    </li>
+    <li><strong>Wealth & Retail Banking</strong>
+        <ul>
+            <li>Overall income: +12% YoY</li>
+            <li>Investment Products: +33%</li>
+            <li>Bancassurance: +15% YoY</li>
+            <li>Affluent AUM: $389bn (+6% QoQ)</li>
+        </ul>
+    </li>
+    <li><strong>Strategic Outlook & Targets</strong>
+        <ul>
+            <li>Operating expenses target: <$12.3bn by 2026</li>
+            <li>CET1 ratio target range: 13-14%</li>
+            <li>Planned shareholder returns: Minimum $8bn (2024-2026)</li>
+            <li>RoTE target: Approaching 13% in 2026</li>
+        </ul>
+    </li>
+</ul></p>`
             this.byId("htmlContent").setContent(res);
 
             // var prompt = this.byId("editablePrompt").getValue();
@@ -240,6 +268,131 @@ sap.ui.define([
             //     console.log("Catch of AskFinsigh:", err);
             //     MessageBox.error("Failed to fetch response due to: ", err)
             // }
+        },
+
+        onChatCopy: function () {
+            const oChatBox = this.byId("ChatBotResult");
+            const domRef = oChatBox?.getDomRef();
+
+            if (!domRef) {
+                sap.m.MessageToast.show("Nothing to copy");
+                return;
+            }
+
+            const message = domRef.innerText;
+
+            if (navigator?.clipboard && message) {
+                navigator.clipboard
+                    .writeText(message)
+                    .then(() => {
+                        sap.m.MessageToast.show("Text copied to clipboard");
+                    })
+                    .catch((err) => {
+                        console.error("Copy failed", err);
+                        sap.m.MessageToast.show("Failed to copy text.");
+                    });
+            }
+        },
+        onChatExport: async function () {
+            if (!window.jspdf || !window.html2canvas) {
+                sap.m.MessageToast.show("Required libraries not loaded.");
+                return;
+            }
+
+            const { jsPDF } = window.jspdf;
+            const userInput = this.byId("editablePrompt").getValue() || "";
+            const plainText = userInput
+                .replace(/<sup>.*?<\/sup>/gi, "")   // remove superscripts entirely
+                .replace(/<[^>]*>/g, "")            // remove all HTML tags
+                .trim();
+            const domRef = this.byId("ChatBotResult")?.getDomRef();
+            if (!domRef) {
+                sap.m.MessageToast.show("No content to export");
+                return;
+            }
+
+            // --- Create hidden container ---
+            const wrapper = document.createElement("div");
+            wrapper.style.width = "794px"; // A4 width in px at 96 DPI
+            wrapper.style.padding = "20px";
+            wrapper.style.background = "#fff";
+            wrapper.style.fontFamily = "Arial, sans-serif";
+            wrapper.style.position = "absolute";
+            wrapper.style.top = "0";
+            wrapper.style.left = "-9999px";
+            document.body.appendChild(wrapper);
+
+            // --- User Input Section ---
+            const userInputBox = document.createElement("div");
+            userInputBox.style.background = "linear-gradient(to right, #e8f0ff, #f2f6fd)";
+            userInputBox.style.padding = "16px 24px";
+            userInputBox.style.borderRadius = "8px";
+            userInputBox.style.marginBottom = "24px";
+            userInputBox.style.border = "1px solid #cdddfb";
+
+            const headerText = document.createElement("div");
+            headerText.textContent = "USER INPUT";
+            headerText.style.fontSize = "18px";
+            headerText.style.fontWeight = "bold";
+            headerText.style.color = "#1a73e8";
+            headerText.style.marginBottom = "8px";
+
+            const userInputText = document.createElement("div");
+            userInputText.textContent = plainText;
+            userInputText.style.fontSize = "14px";
+            userInputText.style.color = "#333";
+
+            userInputBox.appendChild(headerText);
+            userInputBox.appendChild(userInputText);
+            wrapper.appendChild(userInputBox);
+
+            // --- Clone Chat Response ---
+            const responseClone = domRef.cloneNode(true);
+            responseClone.style.margin = "0"; // prevent extra spacing
+            wrapper.appendChild(responseClone);
+
+            // --- Wait for DOM to layout ---
+            await new Promise(resolve => requestAnimationFrame(resolve));
+
+            try {
+                const canvas = await html2canvas(wrapper, {
+                    scale: 2,
+                    useCORS: true,
+                    scrollY: 0,
+                    windowWidth: wrapper.scrollWidth,
+                    height: wrapper.scrollHeight
+                });
+
+                const imgData = canvas.toDataURL("image/png");
+                const pdf = new jsPDF("p", "pt", "a4");
+                const pdfWidth = pdf.internal.pageSize.getWidth();
+                const pdfHeight = pdf.internal.pageSize.getHeight();
+
+                const imgWidth = pdfWidth;
+                const imgHeight = (canvas.height * pdfWidth) / canvas.width;
+
+                let heightLeft = imgHeight;
+                let position = 0;
+
+                pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
+                heightLeft -= pdfHeight;
+
+                while (heightLeft > 0) {
+                    position -= pdfHeight;
+                    pdf.addPage();
+                    pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
+                    heightLeft -= pdfHeight;
+                }
+
+                pdf.save("IntellibaseNLQ_Chat_Export.pdf");
+                sap.m.MessageToast.show("PDF exported successfully");
+
+            } catch (err) {
+                console.error("PDF export failed", err);
+                sap.m.MessageToast.show("Failed to export PDF");
+            } finally {
+                document.body.removeChild(wrapper);
+            }
         }
     });
 });

@@ -1,55 +1,54 @@
-/* Enter your custom styles here */
 @font-face {
-  font-display: block;
-  font-family: SCProsperSans;
-  font-style: normal;
-  font-weight: 400;
-  src: url(../fonts/SCProsperSans-Light.woff2) format("woff2"), url(../fonts/SCProsperSans-Light.ttf) format("truetype")
+    font-display: block;
+    font-family: SCProsperSans;
+    font-style: normal;
+    font-weight: 400;
+    src: url(../fonts/SCProsperSans-Light.woff2) format("woff2"),url(../fonts/SCProsperSans-Light.ttf) format("truetype")
 }
 
 @font-face {
-  font-display: block;
-  font-family: SCProsperSansLight;
-  font-style: normal;
-  src: url(../fonts/SCProsperSans-Light.woff2) format("woff2"), url(../fonts/SCProsperSans-Light.ttf) format("truetype")
+    font-display: block;
+    font-family: SCProsperSansLight;
+    font-style: normal;
+    src: url(../fonts/SCProsperSans-Light.woff2) format("woff2"),url(../fonts/SCProsperSans-Light.ttf) format("truetype")
 }
 
 @font-face {
-  font-display: block;
-  font-family: SCProsperSans;
-  font-style: normal;
-  font-weight: 500;
-  src: url(../fonts/SCProsperSans-Regular.woff2) format("woff2"), url(../fonts/SCProsperSans-Regular.ttf) format("truetype")
+    font-display: block;
+    font-family: SCProsperSans;
+    font-style: normal;
+    font-weight: 500;
+    src: url(../fonts/SCProsperSans-Regular.woff2) format("woff2"),url(../fonts/SCProsperSans-Regular.ttf) format("truetype")
 }
 
 @font-face {
-  font-display: block;
-  font-family: SCProsperSans;
-  font-style: normal;
-  font-weight: 600;
-  src: url(../fonts/SCProsperSans-Medium.woff2) format("woff2"), url(../fonts/SCProsperSans-Medium.ttf) format("truetype")
+    font-display: block;
+    font-family: SCProsperSans;
+    font-style: normal;
+    font-weight: 600;
+    src: url(../fonts/SCProsperSans-Medium.woff2) format("woff2"),url(../fonts/SCProsperSans-Medium.ttf) format("truetype")
 }
 
 @font-face {
-  font-display: block;
-  font-family: SCProsperSansMedium;
-  font-style: normal;
-  src: url(../fonts/SCProsperSans-Medium.woff2) format("woff2"), url(../fonts/SCProsperSans-Medium.ttf) format("truetype")
+    font-display: block;
+    font-family: SCProsperSansMedium;
+    font-style: normal;
+    src: url(../fonts/SCProsperSans-Medium.woff2) format("woff2"),url(../fonts/SCProsperSans-Medium.ttf) format("truetype")
 }
 
 @font-face {
-  font-display: block;
-  font-family: SCProsperSans;
-  font-style: normal;
-  font-weight: 700;
-  src: url(../fonts/SCProsperSans-Bold.woff2) format("woff2"), url(../fonts/SCProsperSans-Bold.ttf) format("truetype")
+    font-display: block;
+    font-family: SCProsperSans;
+    font-style: normal;
+    font-weight: 700;
+    src: url(../fonts/SCProsperSans-Bold.woff2) format("woff2"),url(../fonts/SCProsperSans-Bold.ttf) format("truetype")
 }
 
 @font-face {
-  font-display: block;
-  font-family: SCProsperSansBold;
-  font-style: normal;
-  src: url(../fonts/SCProsperSans-Bold.woff2) format("woff2"), url(../fonts/SCProsperSans-Bold.ttf) format("truetype")
+    font-display: block;
+    font-family: SCProsperSansBold;
+    font-style: normal;
+    src: url(../fonts/SCProsperSans-Bold.woff2) format("woff2"),url(../fonts/SCProsperSans-Bold.ttf) format("truetype")
 }
 
 body {
@@ -101,7 +100,6 @@ body {
 .sapUiCorePlaintext {
   font-family: SCProsperSans !important;
 }
-
 .sapMBtnInner {
   border-radius: 18px;
 }
@@ -115,135 +113,14 @@ body {
 .sapMTitle {
   font-family: SCProsperSansBold !important;
 }
-
-.sapMBtn:focus-visible>.sapMFocusable:not(.sapMBadgeIndicator)::before,
-html.sap-desktop .sapMBtn:focus>.sapMFocusable:not(.sapMBadgeIndicator)::before {
+.sapMBtn:focus-visible>.sapMFocusable:not(.sapMBadgeIndicator)::before,html.sap-desktop .sapMBtn:focus>.sapMFocusable:not(.sapMBadgeIndicator)::before {
   border-radius: 18px;
-}
-
-.sapUiSizeCompact .sapMBtnInner.sapMBtnText {
-  background-color: #007aff !important;
-  color: white !important;
-  border-radius: 8px;
-  /* Optional: Adds rounded corners */
-  /* margin-left: 5px; */
-}
-
-html,
-body,
-.sapUiBody,
-.sapMPage {
-  height: 100%;
-  overflow: hidden;
-}
-
-.customRTEFont {
-  font-family: SCProsperSans, Arial, Helvetica, sans-serif !important;
-  font-size: 14px;
-  color: #525355;
-}
-
-.keyword-number {
-  font-weight: bold;
-  text-align: center;
-  color: white;
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  line-height: 20px;
-  margin-right: 8px;
-  display: inline-block;
-  text-align: center;
-}
-
-/* Color-coded based on index */
-.keyword-color-0 {
-  background-color: #0070f2;
-}
-
-/* blue */
-.keyword-color-1 {
-  background-color: #00b050;
-}
-
-/* green */
-.keyword-color-2 {
-  background-color: #ffb100;
-}
-
-/* yellow */
-.keyword-color-3 {
-  background-color: #d62d20;
-}
-
-/* red */
-.keyword-color-4 {
-  background-color: #a200ff;
-}
-
-/* purple */
-
-.fixedPromptList {
-  height: 500px;
-  overflow-y: auto;
-  border: 1px solid #ccc;
-  /* optional visual boundary */
-  border-radius: 6px;
-}
-
-.summaryTitle {
-  font-size: 1.5rem;
-  color: rgb(0, 122, 255);
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  margin: 0px;
-}
-
-/* Result */
-.summaryBox {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.25rem 2rem;
-  background: linear-gradient(90deg,
-      rgba(0, 122, 255, 0.08),
-      rgba(0, 122, 255, 0.02));
-  border-bottom: 1px solid rgba(0, 122, 255, 0.15);
-}
-
-.grid-response {
-  padding-left: 5rem
-}
-
-.result {
-  border: none;
-  border-radius: 16px;
-  /* box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 10px 1px; */
-  background: #ffff !important;
-  width: 100% !important;
-  max-width: 1200px;
 }
 
 .response-content {
   line-height: 1.2;
   color: #333;
   font-size: 1rem;
-  text-align: left !important;
-  letter-spacing: normal !important;
-}
-
-.response-content {
-  text-align: left !important;
-  letter-spacing: normal !important;
-}
-
-.responseTextBox {
-  overflow-x: auto;
-  padding: 2rem;
-}
-
-.response-grid {
-  padding-left: 100px;
 }
 
 /* Enhanced Heading Styles */
@@ -345,7 +222,7 @@ body,
   border-collapse: separate;
   border-spacing: 0;
   margin: 1.5rem 0;
-  /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   border-radius: 8px;
   overflow: hidden;
 }
@@ -374,10 +251,179 @@ body,
 .response-content tr:nth-child(even) td {
   background: rgba(0, 122, 255, 0.02);
 }
+/* Avoid global title overrides — remove/override any earlier rule that targeted .sapMTitle globally */
+/* Instead use scoped classes below */
 
-.ResultFlexBox {
-  padding: 2rem;
-  max-width: 1200px;
-  width: 100%;
-  box-sizing: border-box;
+/* ---------- Main page title (only) ---------- */
+/* target the Page title element rendered by UI5 inside our customPageTitle Page */
+.customPageTitle .sapMTitle {
+    font-size: 64px !important;
+    font-weight: 800 !important;
+    padding: 36px 0 18px !important;
+    /* color: #0b3d91 !important; */
+    line-height: 1 !important;
+    letter-spacing: -0.02em;
+    overflow: visible !important;       /* or 64px if you prefer */
+  white-space: normal !important;
+  display: block !important;
+  position: relative !important;
+  z-index: 50 !important;
+  margin: 0 !important;
 }
+
+/* Increase the Page header area height so the top has more presence */
+.customPageTitle .sapMPageHeader {
+  min-height: 120px !important;        /* header taller to fit large title */
+  padding-top: 18px !important;
+  padding-bottom: 18px !important;
+  box-sizing: border-box !important;
+  overflow: visible !important;
+}
+
+/* ---------- Section titles (Pre-defined / Freeform) ---------- */
+/* Use the sectionTitle class on Title control to style section headings only */
+.sectionTitle.sapMTitle,
+.sectionTitle {
+    /* scoped, strong specificity so it wins over other theme rules */
+    font-size: 36px !important;
+    font-weight: 700 !important;
+    /* color: #18458d !important; */
+    margin: 0 0 12px 0 !important;
+    letter-spacing: -0.01em !important;
+}
+
+/* if you want the smaller subtitle look for level H5 keep this rule */
+.sectionTitle[titleLevel="H5"] {
+    font-size: 22px !important;
+}
+
+/* ---------- Prompt list card ---------- */
+.fixedPromptList {
+  height: 500px;
+  overflow-y: auto;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  padding: 0.25rem;
+}
+
+/* Right editor card */
+.customRTEFont {
+  font-family: SCProsperSans, Arial, Helvetica, sans-serif !important;
+  font-size: 14px;
+  color: #525355;
+  border-radius: 6px;
+}
+
+/* ---------- SUMMARY block ---------- */
+.summaryCenter {
+  margin: 2rem auto 4rem auto;
+  width: 90%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* summaryBox keeps title left and icons right */
+.summaryBox {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 1.25rem 1.5rem !important;
+  background: linear-gradient(90deg, rgba(7,57,112,0.03), rgba(7,57,112,0.01)) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 6px 18px rgba(12,36,80,0.06) !important;
+  border: none !important;
+}
+
+/* SUMMARY title styling */
+.summaryTitle.sapMTitle,
+.summaryTitle {
+  font-size: 35px !important;
+  font-weight: 800 !important;
+  color: #214fa5 !important;
+  margin: 0 !important;
+  letter-spacing: 0.02em !important;
+  text-align: left !important;
+}
+
+/* icons area (copy/download) */
+.messageEmotions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* Response box styling */
+.responseTextBox {
+  margin-top: 1rem;
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 6px 18px rgba(12,36,80,0.04);
+}
+
+/* Ensure response content is left aligned */
+.response-content {
+  text-align: left !important;
+  color: #333;
+}
+
+/* ---------- Buttons ---------- */
+.sapMBtnInner {
+  border-radius: 12px !important;
+}
+
+/* Emphasized button look (Ask FinSight) */
+#askFinsight .sapMBtnInner,
+#askFinsight {
+  background: linear-gradient(90deg,#007aff,#00b7ff) !important;
+  color: #fff !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+}
+
+/* ---------- Other tweaks ---------- */
+.fixedPromptList .sapMListItem {
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+
+sapMPage, .sapMPage {
+  background: linear-gradient(180deg,#fbfdff,#f3f4f6) !important;
+  overflow: visible !important;
+}
+
+/* ensure no other global title rules accidentally override our scoped classes */
+/* This rule is defensive: if other theme rules set font-size on .sapMTitle we keep scoped ones */
+.customPageTitle .sapMTitle,
+.sectionTitle.sapMTitle,
+.summaryTitle.sapMTitle {
+  /* keep it empty intentionally: scoped rules above have higher specificity */
+  overflow: visible !important;
+}
+
+/* small responsive adjustment */
+@media (max-width: 900px) {
+  .customPageTitle .sapMTitle { font-size: 40px !important; padding-top: 24px !important; }
+  .sectionTitle { font-size: 26px !important; }
+  .summaryTitle { font-size: 34px !important; }
+  .summaryCenter { width: 95%; }
+  .fixedPromptList { height: 380px; }
+}
+
+/* === MAIN TITLE SECTION === */
+.titleSection {
+  width: 100%;
+  padding: 40px 0 20px 0;     /* gives breathing room */
+  background: transparent;
+}
+
+.mainTitle {
+  font-size: 60px;
+  font-weight: 800;
+  text-align: center;
+  margin: 0;
+  line-height: 1.1;
+}
+
