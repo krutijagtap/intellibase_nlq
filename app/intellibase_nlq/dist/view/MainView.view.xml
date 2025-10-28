@@ -5,69 +5,40 @@
     xmlns:core="sap.ui.core"
     displayBlock="true"
     xmlns:richtexteditor="sap.ui.richtexteditor">
+
     <Page
-        title="How can I help you?"
-        titleAlignment="Center"
-        class="classTitle"
+       showHeader="false"
+       class = "mainPage"
     >
-        <l:Grid
-            defaultSpan="L6 M12 S12"
-            width="100%"
-        >
+    <VBox class="titleSection" alignItems="Center">
+    <Title text="How can I help you?" class="mainTitle"/>
+  </VBox>
+
+        <l:Grid defaultSpan="L6 M12 S12" width="100%">
             <l:content>
-                <VBox
-                    class="sapUiSmallMargin"
-                    width="100%"
-                >
-                    <Title
-                        text="Pre-defined Prompt"
-                        level="H3"
-                    />
-                    <!-- Category + Product Dropdowns -->
+                <VBox class="sapUiSmallMargin" width="100%">
+                    <!-- give section titles their own class so we can style them specifically -->
+                    <Title text="Pre-defined Prompt" level="H3" class="sectionTitle" />
+
                     <HBox>
-                        <Select
-                            id="categorySelect"
-                            items="{categories>/}"
-                            change=".onCategoryChange"
-                        >
-                            <core:Item
-                                key="{categories>category}"
-                                text="{categories>category}"
-                            />
+                        <Select id="categorySelect" items="{categories>/}" change=".onCategoryChange">
+                            <core:Item key="{categories>category}" text="{categories>category}" />
                         </Select>
-                        <Select
-                            id="productSelect"
-                            items="{products>/}"
-                            change=".onProductChange"
-                        >
-                            <core:Item
-                                key="{products>product}"
-                                text="{products>product}"
-                            />
+                        <Select id="productSelect" items="{products>/}" change=".onProductChange">
+                            <core:Item key="{products>product}" text="{products>product}" />
                         </Select>
-                        <SearchField
-                            id="searchID"
-                            liveChange="onSearchLive"
-                        />
+                        <SearchField id="searchID" liveChange="onSearchLive" />
                     </HBox>
-                    <!-- Prompt + Description List -->
-                    <List
-                        id="promptList"
-                        mode="SingleSelectMaster"
-                        selectionChange="onSelectPrompt"
-                        class="fixedPromptList"
-                    />
+
+                    <List id="promptList" mode="SingleSelectMaster" selectionChange="onSelectPrompt" class="fixedPromptList" />
                 </VBox>
             </l:content>
-            <!-- RIGHT SIDE -->
+
             <l:content>
                 <VBox class="sapUiSmallMargin">
-                    <Title
-                        text="Freeform Prompt"
-                        level="H5"
-                    />
+                    <Title text="Freeform Prompt" level="H5" class="sectionTitle" />
                     <Text text="Edit as necessary" />
-                    <!-- Formatted display -->
+
                     <richtexteditor:RichTextEditor
                         id="editablePrompt"
                         width="100%"
@@ -84,108 +55,29 @@
                     />
 
                     <VBox id="keywordBox">
-                        <core:HTML
-                            id="legendSection"
-                            content=""
-                        />
+                        <core:HTML id="legendSection" content="" />
                     </VBox>
-                    <Button
-                        id="askFinsight"
-                        text="Ask FinSight"
-                        type="Emphasized"
-                        class="sapUiTinyMarginTop"
-                        press="onPressButton"
-                    />
+
+                    <Button id="askFinsight" text="Ask FinSight" type="Emphasized" class="sapUiTinyMarginTop" press="onPressButton" />
                 </VBox>
             </l:content>
         </l:Grid>
 
-        <!-- <FlexBox
-            id="ChatBotResult"
-            visible="true"
-            direction="Column"
-            alignContent="Stretch"
-            alignItems="Stretch"
-            width="80%"
-        >
+        <!-- SUMMARY block -->
+        <FlexBox id="ChatBotResult" visible="true" direction="Column" class="result summaryCenter" width="80%">
             <FlexBox class="summaryBox">
-                <Title
-                    text="SUMMARY"
-                    class="SapUiLargeMarginBegin"
-                />
-                <HBox
-                    class="messageEmotions"
-                    id="messageEmotions"
-                >
-                    <Button
-                        id="buttonCopy"
-                        icon="sap-icon://copy"
-                        type="Transparent"
-                        press="onChatCopy"
-                        tooltip="{i18n>copyTooltip}"
-                    />
-                    <Button
-                        id="buttonExport"
-                        icon="sap-icon://download"
-                        type="Transparent"
-                        press="onChatExport"
-                        tooltip="{i18n>export}"
-                    />
+                <!-- Title uses its own class for precise styling -->
+                <Title text="Summary" class="summaryTitle" />
+                <HBox id="messageEmotions" class="messageEmotions">
+                    <Button id="buttonCopy" icon="sap-icon://copy" type="Transparent" press="onChatCopy" tooltip="{i18n>copyTooltip}" />
+                    <Button id="buttonExport" icon="sap-icon://download" type="Transparent" press="onChatExport" tooltip="{i18n>export}" />
                 </HBox>
             </FlexBox>
-            <FlexBox
-                fitContainer="true"
-                height="100%"
-                wrap="NoWrap"
-            >
-                <core:HTML
-                    id="htmlContent"
-                    content=""
-                    class="response-content"
-                />
-            </FlexBox>
-        </FlexBox> -->
-        <!-- <l:Grid
-            defaultSpan="L12 M12 S12"
-            width="90%"
-            position="Center"
-            class="grid-response"
-        > -->
-            <!-- <l:content> -->
-            <FlexBox id="ChatBotResult" visible="true" direction="Column" class="result" width="80%">
-                <FlexBox class="summaryBox" >
-                    <Title text="SUMMARY" class="summaryTitle"/>
-                    <HBox id="messageEmotions">
-                        <Button
-                            id="buttonCopy"
-                            icon="sap-icon://copy"
-                            type="Transparent"
-                            press="onChatCopy"
-                            tooltip="{i18n>copyTooltip}"
-                        />
-                        <Button
-                            id="buttonExport"
-                            icon="sap-icon://download"
-                            type="Transparent"
-                            press="onChatExport"
-                            tooltip="{i18n>export}"
-                        />
-                    </HBox>
-                </FlexBox>
-                <FlexBox
-                    fitContainer="true"
-                    height="100%"
-                    wrap="NoWrap"
-                    class="responseTextBox response-content"
-                >
-                    <core:HTML
-                        id="htmlContent"
-                        class="response-content"
-                    />
-                </FlexBox>
 
+            <FlexBox fitContainer="true" height="100%" wrap="NoWrap" class="responseTextBox response-content">
+                <core:HTML id="htmlContent" class="response-content" />
             </FlexBox>
-            <!-- </l:content> -->
-        <!-- </l:Grid> -->
+        </FlexBox>
+
     </Page>
 </mvc:View>

@@ -26,4 +26,5 @@ entity PromptsData {
     keyAttribute  : String;
     keyISIN       : String;
     keyMonthYear  : String;
+    keyPortfolio  : String;
 }

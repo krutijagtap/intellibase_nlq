@@ -286,7 +286,6 @@ body {
 .sectionTitle {
     /* scoped, strong specificity so it wins over other theme rules */
     font-size: 36px !important;
-    font-weight: 700 !important;
     /* color: #18458d !important; */
     margin: 0 0 12px 0 !important;
     letter-spacing: -0.01em !important;
@@ -341,7 +340,6 @@ body {
 .summaryTitle.sapMTitle,
 .summaryTitle {
   font-size: 35px !important;
-  font-weight: 800 !important;
   color: #214fa5 !important;
   margin: 0 !important;
   letter-spacing: 0.02em !important;
@@ -420,8 +418,7 @@ sapMPage, .sapMPage {
 }
 
 .mainTitle {
-  font-size: 60px;
-  font-weight: 800;
+  font-size: 50px;
   text-align: center;
   margin: 0;
   line-height: 1.1;

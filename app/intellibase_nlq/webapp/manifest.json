@@ -23,6 +23,10 @@
           "annotations": [],
           "odataVersion": "4.0"
         }
+      },   
+      "TreasuryNLQbackend": {
+        "uri": "/TreasuryNLQbackend/",          
+        "type": "http"
       }
     },
     "crossNavigation": {
