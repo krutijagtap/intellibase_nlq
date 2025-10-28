@@ -30,7 +30,7 @@
                         <SearchField id="searchID" liveChange="onSearchLive" />
                     </HBox>
 
-                    <List id="promptList" mode="SingleSelectMaster" selectionChange="onSelectPrompt" class="fixedPromptList" />
+                    <List id="promptList" mode="SingleSelectMaster" selectionChange="onSelectPrompt" class="fixedPromptList" swipeDirection="Both"/>
                 </VBox>
             </l:content>
 
@@ -54,11 +54,14 @@
                         class="customRTEFont"
                     />
 
-                    <VBox id="keywordBox">
+                    <VBox id="keywordBox" >
                         <core:HTML id="legendSection" content="" />
                     </VBox>
 
+                    <HBox>
                     <Button id="askFinsight" text="Ask FinSight" type="Emphasized" class="sapUiTinyMarginTop" press="onPressButton" />
+                    <Button id="reset" text="Reset" type="Default" class="sapUiTinyMarginTop sapUiTinyMarginBegin" press="onPressReset" />
+                    </HBox>
                 </VBox>
             </l:content>
         </l:Grid>
