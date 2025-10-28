@@ -29,8 +29,23 @@
                         </Select>
                         <SearchField id="searchID" liveChange="onSearchLive" />
                     </HBox>
+                    <!-- <List id="promptList" mode="SingleSelectMaster" selectionChange="onSelectPrompt" class="fixedPromptList"/> -->
 
-                    <List id="promptList" mode="SingleSelectMaster" selectionChange="onSelectPrompt" class="fixedPromptList" swipeDirection="Both"/>
+          <List
+    id="promptList"
+    mode="SingleSelectMaster"
+    selectionChange=".onSelectPrompt"
+    class="fixedPromptList"
+    items="{/PromptsData}"
+>
+    <StandardListItem
+        title="{prompt}"
+        description="{description}"
+        wrapping="true"
+        type="Active"
+    />
+</List>
+
                 </VBox>
             </l:content>
 
@@ -54,13 +69,13 @@
                         class="customRTEFont"
                     />
 
-                    <VBox id="keywordBox" >
+                    <VBox id="keywordBox" visible="true">
                         <core:HTML id="legendSection" content="" />
                     </VBox>
 
-                    <HBox>
-                    <Button id="askFinsight" text="Ask FinSight" type="Emphasized" class="sapUiTinyMarginTop" press="onPressButton" />
-                    <Button id="reset" text="Reset" type="Default" class="sapUiTinyMarginTop sapUiTinyMarginBegin" press="onPressReset" />
+                    <HBox justifyContent="End">
+                    <Button id="reset" text="Reset Selection" type="Default" class="sapUiTinyMarginTop sapUiTinyMarginEnd boldButton" press="onPressReset" />
+                    <Button id="askFinsight" text="Ask FinSight" type="Emphasized" class="sapUiTinyMarginTop boldButton" press="onPressButton" />
                     </HBox>
                 </VBox>
             </l:content>
@@ -78,7 +93,7 @@
             </FlexBox>
 
             <FlexBox fitContainer="true" height="100%" wrap="NoWrap" class="responseTextBox response-content">
-                <core:HTML id="htmlContent" class="response-content" />
+                <core:HTML id="htmlContent" class="response-content" visible="true"/>
             </FlexBox>
         </FlexBox>
 

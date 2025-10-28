@@ -104,6 +104,7 @@ sap.ui.define([
             this.loadPrompts(selectedCategory, selectedProduct);
         },
         onSelectPrompt: async function (oEvent) {
+            this.byId("keywordBox").setVisible(true);
             this.byId("legendSection").setContent("");
             const oContext = oEvent.getParameter("listItem").getBindingContext();
             const oData = oContext.getObject();
@@ -217,6 +218,7 @@ sap.ui.define([
             return token;
         },
         onPressButton: async function () {
+            this.byId("htmlContent").setVisible(true);
             const userInput = this.byId("editablePrompt").getValue();
             const oView = this.getView();
             if (!userInput) {
@@ -493,13 +495,12 @@ sap.ui.define([
             const oLegend = this.byId("legendSection");
             if(oLegend) 
                 {
-                    this.byId("keywordBox").setContent("");
+                    this.byId("keywordBox").setVisible(false);
                     oLegend.setContent("");
-                    // oLegend.renderer();
                 }
 
             const oHtmlContent = this.byId("htmlContent");
-            if(oHtmlContent) oHtmlContent.setContent("");
+            if(oHtmlContent) oHtmlContent.setVisible(false);
 
             const oChatBotResult = this.byId("ChatBotResult");
             if(oChatBotResult) oChatBotResult.setContent?.("") || (oChatBotResult.setText?.(""),null)

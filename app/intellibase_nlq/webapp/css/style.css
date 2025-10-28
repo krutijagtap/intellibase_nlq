@@ -407,7 +407,7 @@ sapMPage, .sapMPage {
   .sectionTitle { font-size: 26px !important; }
   .summaryTitle { font-size: 34px !important; }
   .summaryCenter { width: 95%; }
-  .fixedPromptList { height: 380px; }
+  .fixedPromptList { height: 380px;}
 }
 
 /* === MAIN TITLE SECTION === */
@@ -422,5 +422,9 @@ sapMPage, .sapMPage {
   text-align: center;
   margin: 0;
   line-height: 1.1;
+  color: #2a2929d5;
 }
 
+.boldButton .sapMBtnInner {
+    font-weight: bold !important;
+}
