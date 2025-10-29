@@ -15,6 +15,12 @@ server:
             - /resources
             - /test-resources
           url: https://sapui5.hana.ondemand.com
+        backend:  
+        - path: /api/chat
+          url: https://standard-chartered-bank-core-foundational-12982zqn-gena7af6130d.cfapps.ap11.hana.ondemand.com
+          destination: TreasuryNLQbackend
+        - path: /odata/v4/catalog
+          url: http://localhost:4004
     - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:

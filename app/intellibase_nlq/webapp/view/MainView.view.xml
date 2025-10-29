@@ -4,12 +4,21 @@
     xmlns:l="sap.ui.layout"
     xmlns:core="sap.ui.core"
     displayBlock="true"
-    xmlns:richtexteditor="sap.ui.richtexteditor">
+    xmlns:richtexteditor="sap.ui.richtexteditor"
+    xmlns:tnt="sap.tnt">
 
     <Page
        showHeader="false"
        class = "mainPage"
     >
+    <tnt:ToolHeader id="toolHeader">
+    <ToolbarSpacer width="20px" />
+              <Image
+                id="logo"
+                src="{imageModel>/path}/images/FinSight.png" 
+                decorative="true"
+                class="logo"/>
+        </tnt:ToolHeader>
     <VBox class="titleSection" alignItems="Center">
     <Title text="How can I help you?" class="mainTitle"/>
   </VBox>

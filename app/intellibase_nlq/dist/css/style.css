@@ -117,6 +117,51 @@ body {
   border-radius: 18px;
 }
 
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.hide-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.hide-scroll {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.dasTextAreaInput {
+  padding: 4px 0px 4px 0px;
+  gap: 0px;
+  border-radius: 8px;
+  border: 2px 0px 0px 0px;
+  opacity: 0px;
+  border: 1px solid #e0e0e0;
+}
+
+.dasTextAreaInput:not(:focus-within):not(:focus):not(:hover),
+.dasTextAreaInput:not(:focus-within):not(:focus):not(:hover) {
+  background-color: var(--sapField_Background);
+  background-position: center bottom 0;
+}
+
+.dasTextAreaInput:not(:focus-within):not(:focus),
+.dasTextAreaInput:not(:focus-within):not(:focus) {
+  background-position: center bottom 0;
+  background-size: 100% 2px;
+  background-repeat: repeat-x;
+  background-image: var(--dasTextArea_BackgroundImage,
+      var(--_ui5_textarea_background_image));
+}
+
+/* {
+      box-shadow: var(--dasContent_Shadow2, var(--sapContent_Interaction_Shadow));
+      border-color: var(--dasContent_Hover_BorderColor, var(--sapField_Hover_BorderColor, #333));
+  } */
+
+.dasTextAreaInput:focus-within,
+
 .response-content {
   line-height: 1.2;
   color: #333;
@@ -407,7 +452,7 @@ sapMPage, .sapMPage {
   .sectionTitle { font-size: 26px !important; }
   .summaryTitle { font-size: 34px !important; }
   .summaryCenter { width: 95%; }
-  .fixedPromptList { height: 380px; }
+  .fixedPromptList { height: 380px;}
 }
 
 /* === MAIN TITLE SECTION === */
@@ -422,5 +467,13 @@ sapMPage, .sapMPage {
   text-align: center;
   margin: 0;
   line-height: 1.1;
+  color: #2a2929d5;
 }
 
+.boldButton .sapMBtnInner {
+    font-weight: bold !important;
+}
+
+.logo {
+  height: 40px !important;
+}

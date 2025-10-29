@@ -35,7 +35,7 @@ module.exports = cds.service.impl(async function () {
         const { prompt } = req.data;
         const user = req.user.id;
         const payload = { "message": "user_id:" + user + ":" + prompt };
-        // const destination = await getDestination({ destinationName: "Treasurybackend" });
+        // const destination = await getDestination({ destinationName: "TreasuryNLQbackend" });
 
         // try{
         // const responseChat = await axios.post(`${destination.url}/api/approved-file-upload`, payload, {

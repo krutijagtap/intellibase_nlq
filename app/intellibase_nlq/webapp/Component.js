@@ -21,6 +21,17 @@ sap.ui.define([
 
             // enable routing
             this.getRouter().initialize();
+
+            var appId = this.getManifestEntry("/sap.app/id");
+            var appPath = appId.replaceAll(".", "/");
+            var appModulePath = jQuery.sap.getModulePath(appPath);
+            let oImageModel = new sap.ui.model.json.JSONModel({
+                path: appModulePath,
+            });
+
+            this.setModel(oImageModel, "imageModel");
+
+            this.getModel().refresh();
         }
     });
 });

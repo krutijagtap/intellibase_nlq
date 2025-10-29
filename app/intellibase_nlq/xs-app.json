@@ -16,7 +16,7 @@
     {
       "source": "^/api/(.*)$",
       "target": "/api/$1",
-      "destination": "TreasurNLQbackend",
+      "destination": "TreasuryNLQbackend",
       "authenticationType": "none"
     },
     {
