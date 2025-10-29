@@ -36,10 +36,10 @@ modules:
       content-target: true
       service-key:
         name: intellibase_nlq-destination-key
-  - name: intellibase_nlq_html_repo_host
+  - name: intellibase_nlq-repo-host
     parameters:
       service-key:
-        name: intellibase_nlq_html_repo_host-key
+        name: intellibase_nlq-repo-host-key
   - name: intellibase_nlq-auth
     parameters:
       service-key:
@@ -54,9 +54,9 @@ modules:
           TokenServiceKeyName: intellibase_nlq-auth-key
           URL: ~{srv-api/srv-url}
           sap.cloud.service: intellibase_nlq
-        - Name: Intellibase_intellibase_nlq_html_repo_host
-          ServiceInstanceName: intellibase_nlq-html5-app-host-service
-          ServiceKeyName: intellibase_nlq_html_repo_host-key
+        - Name: Intellibase_intellibase_nlq-repo-host
+          ServiceInstanceName: intellibase_nlq-html5-srv
+          ServiceKeyName: intellibase_nlq-repo-host-key
           sap.cloud.service: Intellibase
         - Authentication: OAuth2UserTokenExchange
           Name: Intellibase_intellibase_nlq_auth
@@ -70,7 +70,7 @@ modules:
   type: com.sap.application.content
   path: .
   requires:
-  - name: intellibase_nlq_html_repo_host
+  - name: intellibase_nlq-repo-host
     parameters:
       content-target: true
   build-parameters:
@@ -120,11 +120,11 @@ resources:
     service: destination
     service-name: intellibase_nlq-destination-service
     service-plan: lite
-- name: intellibase_nlq_html_repo_host
+- name: intellibase_nlq-repo-host
   type: org.cloudfoundry.managed-service
   parameters:
     service: html5-apps-repo
-    service-name: intellibase_nlq-html5-app-host-service
+    service-name: intellibase_nlq-html5-srv
     service-plan: app-host
 - name: intellibase_nlq-html5-repo-runtime
   type: org.cloudfoundry.managed-service

@@ -320,12 +320,11 @@ sap.ui.define([
             console.log("Logged in User: ", userDetails);
             const bankId = userDetails.name;
 
-            payload = { "message": "user_id:" + bankId + ":Intellibase " + sInput };
+            payload = {"message": "user_id:" + bankId + ":Intellibase " + sInput };
 
             let pl = {"message": "Test Payload"}
 
             console.log("Before API call - payload: ", payload);
-            const req = JSON.stringify(payload);
             try {
                 const response = await fetch(chatUrl, {
                     method: "POST",
@@ -333,7 +332,7 @@ sap.ui.define([
                         "X-CSRF-Token": csrf,
                         "Content-Type": "application/json"
                     },
-                    body: JSON.stringify(pl)
+                    body: JSON.stringify(payload)
                 });
                 clearTimeout(timeout);
 
