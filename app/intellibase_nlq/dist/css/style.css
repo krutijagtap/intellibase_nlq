@@ -117,6 +117,22 @@ body {
   border-radius: 18px;
 }
 
+html,
+body,
+.sapUiBody,
+.sapMPage {
+  height: 100%;
+  overflow: hidden;
+}
+
+.sideNavigationToggleButton {
+  border-radius: 8px;
+  background: rgba(0, 122, 255, 0.1);
+}
+
+.sideNavigationToggleButton .sapMBtnIcon {
+  color: #007aff !important;
+}
 
 /* Hide scrollbar for Chrome, Safari and Opera */
 .hide-scroll::-webkit-scrollbar {
@@ -384,7 +400,7 @@ body {
 /* SUMMARY title styling */
 .summaryTitle.sapMTitle,
 .summaryTitle {
-  font-size: 35px !important;
+  font-size: 34px !important;
   color: #214fa5 !important;
   margin: 0 !important;
   letter-spacing: 0.02em !important;

@@ -94,10 +94,10 @@
         <FlexBox id="ChatBotResult" visible="true" direction="Column" class="result summaryCenter" width="80%">
             <FlexBox class="summaryBox">
                 <!-- Title uses its own class for precise styling -->
-                <Title text="Summary" class="summaryTitle" />
+                <Title text="Result" class="summaryTitle" />
                 <HBox id="messageEmotions" class="messageEmotions">
-                    <Button id="buttonCopy" icon="sap-icon://copy" type="Transparent" press="onChatCopy" tooltip="{i18n>copyTooltip}" />
-                    <Button id="buttonExport" icon="sap-icon://download" type="Transparent" press="onChatExport" tooltip="{i18n>export}" />
+                    <!-- <Button id="buttonCopy" icon="sap-icon://copy" type="Transparent" press="onChatCopy" tooltip="{i18n>copyTooltip}" /> -->
+                    <Button id="buttonExport" icon="sap-icon://download" text="Download PDF" type="Emphasized" press="onChatExport" tooltip="{i18n>export}" />
                 </HBox>
             </FlexBox>
 
