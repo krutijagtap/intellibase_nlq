@@ -219,6 +219,7 @@ sap.ui.define([
         },
         onPressButton: async function () {
             this.byId("htmlContent").setVisible(true);
+            this.byId("ChatBotResult").setVisible(true);
             const userInput = this.byId("editablePrompt").getValue();
             const oView = this.getView();
             if (!userInput) {
@@ -545,6 +546,8 @@ sap.ui.define([
                 this.byId("keywordBox").setVisible(false);
                 oLegend.setContent("");
             }
+
+            this.byId("ChatBotResult").setVisible(false);
 
             const oHtmlContent = this.byId("htmlContent");
             if (oHtmlContent) oHtmlContent.setVisible(false);
