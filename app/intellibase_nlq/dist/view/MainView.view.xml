@@ -23,7 +23,7 @@
     <Title text="How can I help you?" class="mainTitle"/>
   </VBox>
 
-        <l:Grid defaultSpan="L6 M12 S12" width="100%">
+        <l:Grid defaultSpan="L6 M12 S12" width="100%" class="gridClass">
             <l:content>
                 <VBox class="sapUiSmallMargin" width="100%">
                     <!-- give section titles their own class so we can style them specifically -->
@@ -47,12 +47,18 @@
     class="fixedPromptList"
     items="{/PromptsData}"
 >
-    <StandardListItem
+    <!-- <StandardListItem
         title="{prompt}"
         description="{description}"
         wrapping="true"
         type="Active"
-    />
+    /> -->
+    <CustomListItem>
+    <VBox>
+        <Text text="{prompt}" class="promptTitle" wrapping="true"/>
+        <Text text="{description}" class="promptDesc" wrapping="true"/>
+    </VBox>
+    </CustomListItem>
 </List>
 
                 </VBox>
@@ -96,8 +102,8 @@
                 <!-- Title uses its own class for precise styling -->
                 <Title text="Result" class="summaryTitle" />
                 <HBox id="messageEmotions" class="messageEmotions">
-                    <Button id="buttonCopy" icon="sap-icon://copy" type="Transparent" press="onChatCopy" tooltip="{i18n>copyTooltip}" />
-                    <Button id="buttonExport" icon="sap-icon://download" type="Transparent" press="onChatExport" tooltip="{i18n>export}" />
+                    <!-- <Button id="buttonCopy" icon="sap-icon://copy" type="Transparent" press="onChatCopy" tooltip="{i18n>copyTooltip}" /> -->
+                    <Button id="buttonExport" icon="sap-icon://download" text="Download PDF" type="Emphasized" press="onChatExport" tooltip="{i18n>export}" />
                 </HBox>
             </FlexBox>
 

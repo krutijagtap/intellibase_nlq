@@ -493,3 +493,31 @@ sapMPage, .sapMPage {
 .logo {
   height: 40px !important;
 }
+
+.promptTitle{
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #0a0a0a;
+}
+
+.promptDesc{
+  font-size: 0.8rem;
+  color: #6a6a6a
+}
+
+/* .gridClass{
+  padding-left: 5rem;
+  padding-right: 5rem;
+} */
+/* 
+.sapUiSizeCompact .sapMPage>section,
+.sapMPage>section{
+  display: flex;
+  justify-content: center;
+}
+
+.sapUiSizeCompact .sapMPage>section>div,
+.sapMPage>section>div{
+  max-width: 1200px;
+  width: 100%;
+} */
