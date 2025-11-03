@@ -127,7 +127,7 @@ sap.ui.define([
                     number: index + 1 // temporary numbering
                 }));
 
-                // 🔹 Determine order of appearance in the prompt
+                // Determine order of appearance in the prompt
                 aKeyFields = aKeyFields
                     .map(obj => {
                         const index = sPrompt.toLowerCase().indexOf(obj.value.toLowerCase());
@@ -141,33 +141,71 @@ sap.ui.define([
                 const sHighlightedPrompt = this.highlightKeywords(sPrompt, aKeyFields);
                 this.byId("editablePrompt").setValue(sHighlightedPrompt);
 
-                // 🔹 Build legend HTML based on the same ordered list
+                // 🔹 Build legend HTML with simple tile-like look
                 const colors = ["#0070f2", "#00b050", "#ffb100", "#d62d20", "#a200ff"];
-                const sLegendHtml = aKeyFields
-                    .filter(k => k.description)
-                    .map((k, i) => {
-                        const color = colors[i % colors.length];
-                        return `
-                    <div style="margin-bottom:6px; display:flex; align-items:center;">
-                        <span style="
-                            display:inline-block;
-                            background-color:${color};
-                            color:white;
-                            font-weight:bold;
-                            border-radius:4px;
-                            padding:2px 6px;
-                            margin-right:8px;
-                            font-size:0.9rem;
-                        ">${k.number}</span>
-                        <span style="font-size:0.9rem; color:#32363a;">
-                            ${k.description}
-                        </span>
-                    </div>
-                `;
-                    })
-                    .join("");
 
-                // Refresh the HTML legend every time
+                const containerStyle = `
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 12px;
+            max-width: 100%;
+            box-sizing: border-box;
+        `;
+
+                const sLegendHtml = `
+            <div style="${containerStyle}">
+                ${aKeyFields
+                        .filter(k => k.description)
+                        .map((k, i) => {
+                            const color = colors[i % colors.length];
+                            const desc = String(k.description)
+                                .replace(/&/g, "&amp;")
+                                .replace(/</g, "&lt;")
+                                .replace(/>/g, "&gt;");
+                            return `
+                            <div
+                                style="
+                                    display:flex;
+                                    align-items:center;
+                                    gap:10px;
+                                    padding:10px 12px;
+                                    margin-bottom:10px;
+                                    border-radius:10px;
+                                    background:#ffffff;
+                                    max-width:100%;
+                                    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+                                "
+                            >
+                                <div style="
+                                    display:inline-flex;
+                                    align-items:center;
+                                    justify-content:center;
+                                    min-width:28px;
+                                    height:28px;
+                                    border-radius:6px;
+                                    background:${color};
+                                    color:#fff;
+                                    font-weight:600;
+                                    font-size:0.9rem;
+                                    padding:0 8px;
+                                ">${k.number}</div>
+
+                                <div style="
+                                    flex:1;
+                                    font-size:0.92rem;
+                                    font-weight:400;
+                                    color:#32363a;
+                                    white-space:normal;
+                                ">
+                                    ${desc}
+                                </div>
+                            </div>
+                        `;
+                        })
+                        .join("")}
+            </div>
+        `;
+
                 this.byId("legendSection").setContent(sLegendHtml);
 
             } catch (err) {
@@ -243,47 +281,6 @@ sap.ui.define([
 
             try {
                 const resp = await this.onfetchData(sInput);
-                //                 var res = `<p style="color:red;"><p style="color:gray;"><em>✨ Generated by FinSight.Intelligence. Please review before use.</em></p>
-
-                // <h2>Executive Summary</h2>
-                // <p>The financial institution delivered robust performance in Q1'25 with operating income reaching $5,390mn, marking a 7% YoY increase, while achieving 12% YoY income growth excluding notables. The Corporate & Investment Banking division showed particular strength with Global Markets and Global Banking segments growing 14% and 17% YoY respectively. Wealth & Retail Banking demonstrated impressive momentum with a 12% YoY income increase, supported by strong growth in Investment Products (33%) and Bancassurance (15% YoY), while Affluent AUM reached $389bn, representing a 6% QoQ improvement.</p>
-
-                // <h2>Q1 2025 Financial Performance Analysis</h2>
-                // <ul>
-                //     <li><strong>Core Performance Metrics</strong>
-                //         <ul>
-                //             <li>Operating income: $5,390mn (+7% YoY)</li>
-                //             <li>Earnings per share: 19% YoY increase</li>
-                //             <li>CET1 ratio: 13.8% (39bps decrease QoQ)</li>
-                //             <li>Liquidity Coverage Ratio (LCR): 147%</li>
-                //         </ul>
-                //     </li>
-                //     <li><strong>Corporate & Investment Banking</strong>
-                //         <ul>
-                //             <li>Overall income: +4% YoY</li>
-                //             <li>Global Markets: +14% YoY</li>
-                //             <li>Global Banking: +17% YoY</li>
-                //             <li>Transaction Services: -4% YoY</li>
-                //         </ul>
-                //     </li>
-                //     <li><strong>Wealth & Retail Banking</strong>
-                //         <ul>
-                //             <li>Overall income: +12% YoY</li>
-                //             <li>Investment Products: +33%</li>
-                //             <li>Bancassurance: +15% YoY</li>
-                //             <li>Affluent AUM: $389bn (+6% QoQ)</li>
-                //         </ul>
-                //     </li>
-                //     <li><strong>Strategic Outlook & Targets</strong>
-                //         <ul>
-                //             <li>Operating expenses target: <$12.3bn by 2026</li>
-                //             <li>CET1 ratio target range: 13-14%</li>
-                //             <li>Planned shareholder returns: Minimum $8bn (2024-2026)</li>
-                //             <li>RoTE target: Approaching 13% in 2026</li>
-                //         </ul>
-                //     </li>
-                // </ul></p>`
-
                 this.byId("htmlContent").setContent(resp);
             } catch (err) {
                 console.error("Chat fetch error:", err);

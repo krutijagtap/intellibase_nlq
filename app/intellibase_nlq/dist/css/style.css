@@ -359,13 +359,14 @@ body,
 
 /* ---------- Prompt list card ---------- */
 .fixedPromptList {
+  width: 100%;
+  margin-top: 0.5rem;
   height: 500px;
   overflow-y: auto;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   background: #fff;
   box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-  padding: 0.25rem;
 }
 
 /* Right editor card */
@@ -448,6 +449,33 @@ body,
   border-bottom: 1px solid rgba(0,0,0,0.04);
 }
 
+.fixedPromptList .sapMLIB {
+  padding: 1.2rem 1rem !important;
+  margin-bottom: 0.6rem !important;
+  border-radius: 10px;
+  background-color: #fdfdfd;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover effect for tiles */
+.fixedPromptList .sapMLIB:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: #fafafa;
+}
+
+/* Title and description inside list */
+.fixedPromptList .sapMSLITitle {
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.fixedPromptList .sapMSLIDescription {
+  color: #ffffff;
+  margin-top: 0.2rem;
+}
+
 sapMPage, .sapMPage {
   background: linear-gradient(180deg,#fbfdff,#f3f4f6) !important;
   overflow: visible !important;
@@ -496,22 +524,24 @@ sapMPage, .sapMPage {
 
 .promptTitle{
     font-weight: 600;
-    font-size: 0.9rem;
-    color: #0a0a0a;
+    font-size: 1.1rem;
+    color: #0a0a0ab1;
+    margin-bottom: 0.2rem;
 }
 
 .promptDesc{
-  font-size: 0.8rem;
-  color: #6a6a6a
+  font-size: 0.9rem;
+  color: #6a6a6a;
+  line-height: 1.4;
 }
 
 /* Unified card container including title */
 .mainCardBox {
   background: #ffffff;
-  border-radius: 5px;
+  border-radius: 18px;
   /* box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06); */
-  padding: 3rem 3rem 2.5rem 3rem; /* added top padding */
-  margin: 3rem auto;
+  padding: 0 3rem 2.5rem 3rem; /* added top padding */
+  margin: 1.5rem auto;
   max-width: 1500px;
   width: 90%;
   display: flex;
@@ -550,4 +580,23 @@ sapMPage, .sapMPage {
     padding: 2rem 1.25rem 1.5rem 1.25rem;
     width: 95%;
   }
+}
+
+  /* Legend section tile look (similar to prompt list) */
+.keywordBox {
+  margin-top: 1rem;
+  padding: 1.2rem 1rem;
+  border-radius: 10px;
+  background-color: #f9fafc;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* If the legend content (HTML) inside needs spacing */
+.legendSection {
+  display: block;
+  width: 100%;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #333;
 }

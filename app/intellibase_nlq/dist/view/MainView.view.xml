@@ -48,12 +48,6 @@
     class="fixedPromptList"
     items="{/PromptsData}"
 >
-    <!-- <StandardListItem
-        title="{prompt}"
-        description="{description}"
-        wrapping="true"
-        type="Active"
-    /> -->
     <CustomListItem>
     <VBox>
         <Text text="{prompt}" class="promptTitle" wrapping="true"/>
@@ -98,7 +92,7 @@
         </l:Grid>
 
         <!-- SUMMARY block -->
-        <FlexBox id="ChatBotResult" visible="true" direction="Column" class="result summaryCenter" width="80%">
+        <FlexBox id="ChatBotResult" visible="false" direction="Column" class="result summaryCenter" width="80%">
             <FlexBox class="summaryBox">
                 <!-- Title uses its own class for precise styling -->
                 <Title text="Result" class="summaryTitle" />

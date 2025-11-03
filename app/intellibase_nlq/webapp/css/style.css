@@ -581,3 +581,22 @@ sapMPage, .sapMPage {
     width: 95%;
   }
 }
+
+  /* Legend section tile look (similar to prompt list) */
+.keywordBox {
+  margin-top: 1rem;
+  padding: 1.2rem 1rem;
+  border-radius: 10px;
+  background-color: #f9fafc;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* If the legend content (HTML) inside needs spacing */
+.legendSection {
+  display: block;
+  width: 100%;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #333;
+}
