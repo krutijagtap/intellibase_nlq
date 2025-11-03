@@ -505,19 +505,49 @@ sapMPage, .sapMPage {
   color: #6a6a6a
 }
 
-/* .gridClass{
-  padding-left: 5rem;
-  padding-right: 5rem;
-} */
-/* 
-.sapUiSizeCompact .sapMPage>section,
-.sapMPage>section{
+/* Unified card container including title */
+.mainCardBox {
+  background: #ffffff;
+  border-radius: 5px;
+  /* box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06); */
+  padding: 3rem 3rem 2.5rem 3rem; /* added top padding */
+  margin: 3rem auto;
+  max-width: 1500px;
+  width: 90%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  box-sizing: border-box;
 }
 
-.sapUiSizeCompact .sapMPage>section>div,
-.sapMPage>section>div{
-  max-width: 1200px;
-  width: 100%;
-} */
+/* Title spacing and alignment inside the card */
+.mainTitle {
+  text-align: center;
+  font-size: 2.7rem;
+  margin-bottom: 1.5rem;
+  color: #1a1a1ac2;
+}
+
+/* Keep two-column layout spacing */
+.mainCardBox .gridClass {
+  margin-bottom: 2rem;
+}
+
+/* Background outside the card */
+.mainPage {
+  background: linear-gradient(180deg, #f7f8fb, #f5f7f9) !important;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem 0;
+}
+
+/* Responsive padding */
+@media (max-width: 900px) {
+  .mainCardBox {
+    padding: 2rem 1.25rem 1.5rem 1.25rem;
+    width: 95%;
+  }
+}

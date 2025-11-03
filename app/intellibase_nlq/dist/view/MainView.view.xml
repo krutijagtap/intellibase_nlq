@@ -19,6 +19,7 @@
                 decorative="true"
                 class="logo"/>
         </tnt:ToolHeader>
+<VBox class="mainCardBox" alignItems="Stretch">
     <VBox class="titleSection" alignItems="Center">
     <Title text="How can I help you?" class="mainTitle"/>
   </VBox>
@@ -111,6 +112,6 @@
                 <core:HTML id="htmlContent" class="response-content" visible="true"/>
             </FlexBox>
         </FlexBox>
-
+</VBox>
     </Page>
 </mvc:View>
