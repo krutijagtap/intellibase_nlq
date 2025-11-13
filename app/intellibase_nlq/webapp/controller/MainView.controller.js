@@ -477,6 +477,16 @@ sap.ui.define([
 
             // --- Clone Chat Response ---
             const responseClone = domRef.cloneNode(true);
+
+            const resHeader = responseClone.querySelector(".summaryBox")
+            if(resHeader) resHeader.remove();
+
+            // const titleEl = responseClone.querySelector(".summaryTitle");
+            // if (titleEl) titleEl.remove();
+
+            // const exportBtn = responseClone.querySelector(".messageEmotions");
+            // if (exportBtn) exportBtn.remove();
+
             responseClone.style.margin = "0"; // prevent extra spacing
             wrapper.appendChild(responseClone);
 
